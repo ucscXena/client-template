@@ -2,6 +2,7 @@
 'use strict';
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
 	historyApiFallback: true,
@@ -14,8 +15,16 @@ module.exports = {
 	module: {
 		loaders: [
 			{ test: /rx-dom/, loader: "imports?define=>false" },
+			{
+				test: /\.js$/,
+				include: [
+					path.join(__dirname, 'js'),
+					path.join(__dirname, 'test'),
+					path.join(__dirname, 'doc')
+				],
+				loaders: ['babel-loader'],
+				type: 'js'},
 			{ test: /\.css$/, loader: "style!css" },
-			{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader?optional=runtime,cacheDirectory=true'},
 			{ test: /\.(jpe?g|png|gif|svg|eot|woff2?|ttf)$/i, loaders: ['url?limit=10000'] }
 		]
 	},
