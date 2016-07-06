@@ -8,7 +8,7 @@ module.exports = {
 	historyApiFallback: true,
 	entry: "./js/bogorouter",
 	output: {
-		path: "build",
+		path: __dirname + "/build",
 		publicPath: "/",
 		filename: "[name].js"
 	},
@@ -31,6 +31,7 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: "Template Project",
+			inject: false,
 			filename: "index.html",
 			template: "page.template"
 		}),
