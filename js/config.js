@@ -1,6 +1,3 @@
-/*global define: false, config: false */
+/*global config: false */
 'use strict';
-define([], function () {
-	return config;
-});
-
+module.exports = config;

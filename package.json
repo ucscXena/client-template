@@ -14,9 +14,16 @@
     "start:hot": "node ./server-hot.js",
     "build": "webpack",
     "build:prod": "npm run build -- --config webpack.prod.js --devtool source-map",
+    "build:analyze": "npm run -s build:prod -- --profile --json > stats.json",
     "prebuild": "npm run clean",
-    "dist": "npm run clean:dist && cp -r js/* dist && NODE_ENV=production babel -d dist js"
+    "dist": "npm run clean:dist && mkdir -p dist && cp -r js/* dist && NODE_ENV=production babel -d dist js",
+    "prepublish": "npm run dist"
   },
+  "files": [
+    "NOTICE",
+    "LICENSE",
+    "dist"
+  ],
   "author": "Brian Craft",
   "config": {
     "ghooks": {
@@ -26,11 +33,12 @@
   "devDependencies": {
     "assert": "^1.3.0",
     "babel-cli": "^6.4.5",
-    "babel-core": "^6.4.5",
+    "babel-core": "6.24.x",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.1",
     "babel-plugin-react-transform": "^2.0.0",
     "babel-plugin-syntax-object-rest-spread": "^6.3.13",
+    "babel-plugin-tailcall-optimization": "^1.0.11",
     "babel-plugin-transform-object-rest-spread": "^6.3.13",
     "babel-polyfill": "^6.3.14",
     "babel-preset-es2015": "^6.3.13",
@@ -44,8 +52,8 @@
     "html-webpack-plugin": "1.1.0",
     "imports-loader": "^0.6.3",
     "jsverify": "^0.7.1",
-    "mocha": "^2.2.1",
-    "mocha-loader": "^0.7.1",
+    "mocha": "^3.0.0",
+    "mocha-loader": "^1.1.0",
     "react-addons-test-utils": "^0.14.7",
     "react-hot-loader": "^1.3.0",
     "react-transform-catch-errors": "^1.0.1",
